@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course_todoey/model/task.dart';
 import 'package:flutter_course_todoey/screens/task_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +13,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider<Tasks>(
+      create: (_) => Tasks(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const TaskScreen(),
       ),
-      home: const TaskScreen(),
     );
   }
 }

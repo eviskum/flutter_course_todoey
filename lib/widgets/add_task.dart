@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course_todoey/model/task.dart';
+import 'package:provider/provider.dart';
 
-class AddTask extends StatefulWidget {
-  final void Function(Task task) newTaskFn;
-  const AddTask({Key? key, required this.newTaskFn}) : super(key: key);
-
-  @override
-  _AddTaskState createState() => _AddTaskState();
-}
-
-class _AddTaskState extends State<AddTask> {
-  String newTask = '';
-
+class AddTask extends StatelessWidget {
+  // final void Function(Task task) newTaskFn;
   @override
   Widget build(BuildContext context) {
+    // Tasks todoItems = context.watch<Tasks>();
+    // Tasks todoItems = Provider.of<Tasks>(context);
+    String newTask = '';
+
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -41,7 +37,8 @@ class _AddTaskState extends State<AddTask> {
               ),
               TextButton(
                   onPressed: () {
-                    widget.newTaskFn(Task(taskTitle: newTask));
+                    // widget.newTaskFn(Task(taskTitle: newTask));
+                    Provider.of<Tasks>(context, listen: false).add(Task(taskTitle: newTask));
                     Navigator.of(context).pop();
                   },
                   child: Container(
